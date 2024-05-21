@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using BepInEx;
 using HarmonyLib;
-using System.Linq;
-using SkillTypes = CharLevelManager.SkillTypes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using BepInEx.Configuration;
@@ -15,7 +13,7 @@ public partial class Plugin : BaseUnityPlugin {
   internal static Plugin ActiveInstance;
 	private ConfigEntry<float> speed, cost;
 	private ConfigEntry<KeyCode> holdKey, toggleKey;
-	private bool active = false;
+	private bool autoRunToggledOn = false;
 
   private void Awake() {
     ActiveInstance = this;
@@ -63,7 +61,7 @@ public partial class Plugin : BaseUnityPlugin {
   }
 
   private void CheckSprintToggle() {
-    if (Input.GetKeyDown(toggleKey.Value)) active = !active;
+    if (Input.GetKeyDown(toggleKey.Value)) autoRunToggledOn = !autoRunToggledOn;
   }
 
   private void MoveFast() {
@@ -115,6 +113,6 @@ public partial class Plugin : BaseUnityPlugin {
   }
 
   private bool IsRunning() {
-    return Input.GetKey(holdKey.Value) || InputMaster.input.VehicleAccelerate() < -0.5f || active;
+    return Input.GetKey(holdKey.Value) || InputMaster.input.VehicleAccelerate() < -0.5f || autoRunToggledOn;
   }
 }
