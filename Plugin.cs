@@ -96,7 +96,7 @@ public partial class Plugin : BaseUnityPlugin {
     float staminaAmount = new Traverse(staminaInfo).Field("stamina").GetValue<float>();
     bool staminaPunishmentActive = new Traverse(staminaInfo).Field("staminaPunishment").GetValue<bool>();
 
-    bool driving = playerMovement.driving,
+    bool driving = playerMovement.driving,    // This is failing to detect driving for SOME purposes but not others. Driving a vehicle in reverse (the sprint controller button) does not consume stamina, but DOES move faster.
       gliding = playerMovement.usingHangGlider,
       tired = staminaInfo.tired;
 
@@ -113,6 +113,10 @@ public partial class Plugin : BaseUnityPlugin {
   }
 
   private bool IsRunning() {
-    return Input.GetKey(holdKey.Value) || InputMaster.input.VehicleAccelerate() < -0.5f || autoRunToggledOn;
+    return (
+      Input.GetKey(holdKey.Value) ||
+      InputMaster.input.VehicleAccelerate() < -0.5f ||    // Detect the controller left trigger.    Bug: vehicles move fast when going backwards.    TODO: Detect when the player is in a vehicle, and suppress sprint behavior.
+      autoRunToggledOn
+    );
   }
 }
