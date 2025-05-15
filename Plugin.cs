@@ -8,7 +8,7 @@ using BepInEx.Configuration;
 
 namespace PaCInfo;
 
-[BepInPlugin(GUID: "vespoire.dinkum.controllersprint", Name: "Controller Sprint", Version: "1.0.0")]
+[BepInPlugin(GUID: "vespoire.dinkum.controllersprint", Name: "Controller Sprint", Version: "1.0.1")]
 public partial class Plugin : BaseUnityPlugin {
   internal static Plugin ActiveInstance;
 	private ConfigEntry<float> speed, cost;

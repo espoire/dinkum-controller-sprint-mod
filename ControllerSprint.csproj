@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <AssemblyName>vespoire.dinkum.controllersprint</AssemblyName>
     <Description>Controller Sprint</Description>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <GameLibraryPath>X:\Steam\steamapps\common\Dinkum\Dinkum_Data\Managed</GameLibraryPath>
